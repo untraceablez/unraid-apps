@@ -25,3 +25,11 @@
   <Config Name="WebUI Port" Target="7171" Default="7171" Mode="tcp" Description="Default WebUI port. Usually 7171" Type="Port" Display="always" Required="true" Mask="false">7171</Config>
   <TailscaleStateDir/>
 </Container>
+<?xml version="1.0" encoding="utf-8"?>
+<Maintainer>
+  <Profile>
+    Porting various Docker containers as UNRAID community apps when I can. Been a fan of UNRAID for years, just giving back in my own way.
+  </Profile>
+  <DonateLink>https://www.paypal.com/ncp/payment/YATWP3UX2ZQUY</DonateLink>
+  <DonateText>If you like my work please consider Donating.</DonateText>
+</Maintainer>
