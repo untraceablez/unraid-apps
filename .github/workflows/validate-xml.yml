@@ -1,0 +1,94 @@
+name: Validate XML Files
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  validate-xml:
+    name: Validate XML Files
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install xmllint
+        run: |
+          if ! command -v xmllint &> /dev/null; then
+            echo "Installing libxml2-utils for xmllint..."
+            sudo apt-get update
+            sudo apt-get install -y libxml2-utils
+          else
+            echo "xmllint is already installed"
+          fi
+
+      - name: Find XML files
+        id: find-xml
+        run: |
+          echo "Finding all XML files in the repository..."
+          xml_files=$(find . -type f -name "*.xml" -not -path "./.git/*")
+          echo "Found XML files:"
+          echo "$xml_files"
+          echo "xml_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$xml_files" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Validate XML syntax
+        run: |
+          echo "Validating XML files for well-formedness..."
+          exit_code=0
+
+          while IFS= read -r file; do
+            echo "---"
+            echo "Validating: $file"
+            if xmllint --noout "$file" 2>&1; then
+              echo "✓ Valid: $file"
+            else
+              echo "✗ Invalid: $file"
+              exit_code=1
+            fi
+          done < <(find . -type f -name "*.xml" -not -path "./.git/*")
+
+          if [ $exit_code -eq 0 ]; then
+            echo "---"
+            echo "All XML files are well-formed!"
+          else
+            echo "---"
+            echo "Some XML files failed validation"
+            exit 1
+          fi
+
+      - name: Check for multiple XML declarations
+        run: |
+          echo "Checking for multiple XML declarations in files..."
+          exit_code=0
+
+          while IFS= read -r file; do
+            declaration_count=$(grep -c "<?xml" "$file" || true)
+            if [ "$declaration_count" -gt 1 ]; then
+              echo "⚠ Warning: $file contains $declaration_count XML declarations (should be 1)"
+              echo "  This may cause parsing issues in some XML parsers"
+              exit_code=1
+            fi
+          done < <(find . -type f -name "*.xml" -not -path "./.git/*")
+
+          exit $exit_code
+
+      - name: Validation summary
+        if: always()
+        run: |
+          echo "---"
+          echo "XML Validation Summary"
+          echo "---"
+          xml_count=$(find . -type f -name "*.xml" -not -path "./.git/*" | wc -l)
+          echo "Total XML files checked: $xml_count"
+          echo "Runner: self-hosted"
+          echo "Status: Check previous steps for results"

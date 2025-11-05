@@ -1,28 +1,27 @@
 <?xml version="1.0"?>
 <Container version="2">
-    <Name>agregarr</Name>
-	  <Beta>false</Beta>
-    <Category>MediaApp:Video MediaServer:Video Status:Stable</Category>
-    <Repository>https://www.github.com/agregarr/agregarr</Repository>
-    <Registry>https://hub.docker.com/r/agregarr/agregarr</Registry>
-    <Network>bridge</Network>
-    <Privileged>false</Privileged>
-    <ExtraParams>--restart=always</ExtraParams>
-    <Shell>bash</Shell>
-    <Support>https://github.com/untraceablez/unraid-apps/issues</Support>
-    <Project>https://agregarr.org</Project>
-    <Overview>Agregarr is an automated Plex collection management tool that regularly updates your Plex collections with content from multiple sources. It integrates with your existing media management tools to provide seamless collection automation</Overview>
-    <WebUI>http://[IP]:[PORT:7171]</WebUI>
-    <TemplateURL>https://raw.githubusercontent.com/untraceablez/unraid-apps/refs/heads/main/untraceablez/agregarr.xml</TemplateURL>
-    <Icon>https://raw.githubusercontent.com/untraceablez/unraid-apps/main/agregarr-unraid/agregarr.png</Icon>
-    <DonateText>If you like my work please consider Donating.</DonateText>
-    <DonateLink>https://www.paypal.com/ncp/payment/YATWP3UX2ZQUY</DonateLink>
-    <DonateImg>https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif</DonateImg>
-    <Date>2025-11-05</Date>
-    <Changes></Changes>
-    <Config Name="Port: Web Interface" Target="7171" Default="7171" Mode="tcp" Description="This is the Web UI port for the application." Type="Port" Display="always" Required="true" Mask="false"/>
-
-    <Config Name="Path: /app/config" Target="/app/config" Default="/mnt/user/appdata/agregarr/config" Mode="rw" Description="This is the container path to your application configuration files." Type="Path" Display="always" Required="true" Mask="false"/>
+  <Name>agregarr</Name>
+  <Beta>false</Beta>
+  <Category>MediaApp:Video MediaServer:Video Status:Stable</Category>
+  <Repository>https://www.github.com/agregarr/agregarr</Repository>
+  <Registry>https://hub.docker.com/r/agregarr/agregarr</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <ExtraParams>--restart=always</ExtraParams>
+  <Shell>bash</Shell>
+  <Support>https://github.com/untraceablez/unraid-apps/issues</Support>
+  <Project>https://agregarr.org</Project>
+  <Overview>Agregarr is an automated Plex collection management tool that regularly updates your Plex collections with content from multiple sources. It integrates with your existing media management tools to provide seamless collection automation</Overview>
+  <WebUI>http://[IP]:[PORT:7171]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/untraceablez/unraid-apps/refs/heads/main/untraceablez/agregarr.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/untraceablez/unraid-apps/main/agregarr-unraid/agregarr.png</Icon>
+  <DonateText>If you like my work please consider Donating.</DonateText>
+  <DonateLink>https://www.paypal.com/ncp/payment/YATWP3UX2ZQUY</DonateLink>
+  <DonateImg>https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif</DonateImg>
+  <Date>2025-11-05</Date>
+  <Changes></Changes>
+  <Config Name="Port: Web Interface" Target="7171" Default="7171" Mode="tcp" Description="This is the Web UI port for the application." Type="Port" Display="always" Required="true" Mask="false"/>
+  <Config Name="Path: /app/config" Target="/app/config" Default="/mnt/user/appdata/agregarr/config" Mode="rw" Description="This is the container path to your application configuration files." Type="Path" Display="always" Required="true" Mask="false"/>
 	<Config Name="Path: /data/movies" Target="/data/movies" Default="/mnt/user/media/movies" Mode="rw" Description="This is the container path to your Movie library." Type="Path" Display="always" Required="true" Mask="false"/>
 	<Config Name="Path: /data/tv" Target="/data/tv" Default="/mnt/user/media/tv" Mode="rw" Description="This is the container path to your TV library." Type="Path" Display="always" Required="true" Mask="false"/>
 	<Config Name="Path: /data/anime" Target="/data/anime" Default="/mnt/user/media/anime" Mode="rw" Description="This is the container path to your Anime library." Type="Path" Display="always" Required="true" Mask="false"/>
