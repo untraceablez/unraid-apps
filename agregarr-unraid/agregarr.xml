@@ -12,7 +12,7 @@
   <Overview>Agregarr is an automated Plex collection management tool that regularly updates your Plex collections with content from multiple sources. It integrates with your existing media management tools to provide seamless collection automation</Overview>
   <Category>MediaApp:Video MediaServer:Video Status:Stable</Category>
   <WebUI>http://[IP]:[PORT]</WebUI>
-  <TemplateURL/>
+  <TemplateURL>https://raw.githubusercontent.com/untraceablez/unraid-apps/refs/heads/main/agregarr-unraid/agregarr.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/untraceablez/unraid-apps/main/agregarr-unraid/agregarr.png</Icon>
   <ExtraParams/>
   <PostArgs/>
