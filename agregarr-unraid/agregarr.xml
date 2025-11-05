@@ -18,18 +18,20 @@
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1762363460</DateInstalled>
-  <DonateText/>
-  <DonateLink/>
+  <DonateLink>https://www.paypal.com/ncp/payment/YATWP3UX2ZQUY</DonateLink>
+  <DonateText>If you like my work please consider Donating.</DonateText>
   <Requires/>
   <Config Name="Application Configuration Path" Target="/app/config" Default="/mnt/user/appdata/agreggar/config" Mode="rw" Description="The default application configuration path. (/app/config in container)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/agreggar/config</Config>
+  <Config Name="Movie Library Path" Target="/data/movies" Default="/mnt/user/media/movies" Mode="rw" Description="The default Movie Library Path. (/data/movies in container)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/media/movies</Config>
+  <Config Name="TV Library Path" Target="/data/tv" Default="/mnt/user/media/tv" Mode="rw" Description="The default TV Library Path. (/data/tv in container)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/media/tv</Config>
+  <Config Name="Anime Library Path" Target="/data/anime" Default="/mnt/user/media/anime" Mode="rw" Description="The default anime Library Path. (/data/anime in container)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/media/anime</Config>
   <Config Name="WebUI Port" Target="7171" Default="7171" Mode="tcp" Description="Default WebUI port. Usually 7171" Type="Port" Display="always" Required="true" Mask="false">7171</Config>
   <TailscaleStateDir/>
 </Container>
 <?xml version="1.0" encoding="utf-8"?>
 <Maintainer>
+  <Icon>https://raw.githubusercontent.com/untraceablez/unraid-apps/refs/heads/main/master/avatar.jpg</Icon>
   <Profile>
     Porting various Docker containers as UNRAID community apps when I can. Been a fan of UNRAID for years, just giving back in my own way.
   </Profile>
-  <DonateLink>https://www.paypal.com/ncp/payment/YATWP3UX2ZQUY</DonateLink>
-  <DonateText>If you like my work please consider Donating.</DonateText>
 </Maintainer>
