@@ -9,17 +9,16 @@
     <Privileged>false</Privileged>
     <ExtraParams>--restart=always</ExtraParams>
     <Shell>bash</Shell>
-    <ReadMe>https://github.com/untraceablez/unraid-apps/agregarr-unraid/README.md</ReadMe>
     <Support>https://github.com/untraceablez/unraid-apps/issues</Support>
-    <Project>https://github.com/agregarr/agregarr</Project>
+    <Project>https://agregarr.org</Project>
     <Overview>Agregarr is an automated Plex collection management tool that regularly updates your Plex collections with content from multiple sources. It integrates with your existing media management tools to provide seamless collection automation</Overview>
     <WebUI>http://[IP]:[PORT:7171]</WebUI>
-    <TemplateURL>https://raw.githubusercontent.com/untraceablez/unraid-apps/refs/heads/main/agregarr-unraid/agregarr.xml</TemplateURL>
+    <TemplateURL>https://raw.githubusercontent.com/untraceablez/unraid-apps/refs/heads/main/untraceablez/agregarr.xml</TemplateURL>
     <Icon>https://raw.githubusercontent.com/untraceablez/unraid-apps/main/agregarr-unraid/agregarr.png</Icon>
     <DonateText>If you like my work please consider Donating.</DonateText>
     <DonateLink>https://www.paypal.com/ncp/payment/YATWP3UX2ZQUY</DonateLink>
     <DonateImg>https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif</DonateImg>
-    <Date>1970-01-01</Date>
+    <Date>2025-11-05</Date>
     <Changes></Changes>
     <Config Name="Port: Web Interface" Target="7171" Default="7171" Mode="tcp" Description="This is the Web UI port for the application." Type="Port" Display="always" Required="true" Mask="false"/>
 
