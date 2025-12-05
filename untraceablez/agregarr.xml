@@ -26,10 +26,3 @@
 	<Config Name="Path: /data/tv" Target="/data/tv" Default="/mnt/user/media/tv" Mode="rw" Description="This is the container path to your TV library." Type="Path" Display="always" Required="true" Mask="false"/>
 	<Config Name="Path: /data/anime" Target="/data/anime" Default="/mnt/user/media/anime" Mode="rw" Description="This is the container path to your Anime library." Type="Path" Display="always" Required="true" Mask="false"/>
 </Container>
-<?xml version="1.0" encoding="utf-8"?>
-<Maintainer>
-  <Icon>https://raw.githubusercontent.com/untraceablez/unraid-apps/refs/heads/main/master/avatar.jpg</Icon>
-  <Profile>
-    Porting various Docker containers as UNRAID community apps when I can. Been a fan of UNRAID for years, just giving back in my own way.
-  </Profile>
-</Maintainer>
