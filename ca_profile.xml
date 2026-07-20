@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Maintainer>
+	<Icon>https://github.com/untraceablez/jenkins-agent-unraid/blob/main/avatar.jpg</Icon>
+  <Profile>
+    Long-time homelabber and SRE. Creating projects that are useful to me and sharing with others, as is tradition in FOSS. 
+  </Profile>
+  <DonateLink>https://venmo.com/Taylor-Cohron</DonateLink>
+  <DonateText>If you like my work, feel free to donate.</DonateText>
+</Maintainer>
