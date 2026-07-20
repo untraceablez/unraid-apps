@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>jenkins-inbound-agent</Name>
+  <Repository>jenkins/inbound-agent</Repository>
+  <Registry>https://hub.docker.com/r/jenkins/inbound-agent/</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <MyMAC/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://hub.docker.com/r/jenkins/inbound-agent/</Support>
+  <Project>https://www.jenkins.io/</Project>
+  <ReadMe>https://www.jenkins.io/doc/book/using/using-agents/</ReadMe>
+  <Overview>This is the official Jenkins inbound (JNLP) build agent. The agent dials OUT to your Jenkins controller and connects itself, so no inbound ports need to be opened on this container - ideal for unRAID on your LAN.&#13;
+&#13;
+This template uses /mnt/user/appdata/jenkins-inbound-agent/agent as the agent work directory. &#13;
+&#13;
+https://hub.docker.com/r/jenkins/inbound-agent/</Overview>
+  <Category>Productivity: Tools: Status:Stable</Category>
+  <WebUI/>
+  <TemplateURL/>
+  <Icon>https://www.jenkins.io/images/logos/jenkins/jenkins.svg</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1784563737</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires>1. Create the agent work directory on your array:&#13;
+   mkdir -p /mnt/user/appdata/jenkins-agent/agent&#13;
+&#13;
+2. In Jenkins: Manage Jenkins - Nodes - New Node. Give it a name (this becomes JENKINS_AGENT_NAME below), choose "Permanent Agent", and for Launch method select "Launch agent by connecting it to the controller". Set Remote root directory to /home/jenkins/agent. Save.&#13;
+&#13;
+3. Open the node's page. Jenkins shows a connection command containing -secret long hex string. Copy that secret into the JENKINS_SECRET variable below, and put your controller URL (e.g. http://192.168.1.10:8080) into JENKINS_URL.&#13;
+&#13;
+4. (WebSocket) Make sure JENKINS_WEB_SOCKET is true (default). This avoids needing a separate TCP agent port. If you instead use a fixed TCP port, set it under Manage Jenkins - Security - Agents and set JENKINS_WEB_SOCKET to false.</Requires>
+  <Config Name="Container Path 1" Target="/home/jenkins/agent" Default="/mnt/user/appdata/jenkins-agent/agent" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/jenkins-inbound-agent/agent</Config>
+  <Config Name="Container Variable 1" Target="LANG" Default="C.UTF-8" Mode="{3}" Description="" Type="Variable" Display="always" Required="false" Mask="false">C.UTF-8</Config>
+  <Config Name="Container Variable 2" Target="JAVA_HOME" Default="/opt/java/openjdk" Mode="{3}" Description="" Type="Variable" Display="always" Required="false" Mask="false">/opt/java/openjdk</Config>
+  <Config Name="Container Variable 3" Target="AGENT_WORKDIR" Default="/home/jenkins/agent" Mode="{3}" Description="" Type="Variable" Display="always" Required="false" Mask="false">/home/jenkins/agent</Config>
+  <Config Name="Container Variable 4" Target="USER" Default="jenkins" Mode="{3}" Description="" Type="Variable" Display="always" Required="false" Mask="false">jenkins</Config>
+  <Config Name="Community Applications Conversion" Target="Community_Applications_Conversion" Default="true" Mode="{3}" Description="" Type="Variable" Display="always" Required="false" Mask="false">true</Config>
+  <Config Name="Timezone" Target="TZ" Default="Etc/UTC" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="false">America/Chicago</Config>
+  <Config Name="Jenkins Instance Secret" Target="JENKINS_SECRET" Default="your-jenkins-secret-goes-here" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="false">your-true-jenkins-secret-should-be-pasted-here</Config>
+  <Config Name="Jenkins URL" Target="JENKINS_URL" Default="https://jenkins.yourinstance.com/" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="false">https://jenkins.yourinstance.com/</Config>
+  <Config Name="Jenkins WebSocket" Target="JENKINS_WEB_SOCKET" Default="true" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+  <Config Name="Jenkins Agent Name" Target="JENKINS_AGENT_NAME" Default="unraid-jenkins-agent" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="false">unraid-jenkins-agent</Config>
+  <TailscaleStateDir/>
+</Container>
