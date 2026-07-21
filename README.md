@@ -45,11 +45,11 @@ You'll also see the status of the node change in Jenkins, and the number of buil
 
 And that's it, your node is configured and you can now send builds from your pipelines to it! All credit goes to the amazing team over at [Jenkins](https://www.jenkins.io/). 
 
-## uvdesk-unraid
+## [`uvdesk-unraid`](https://www.uvdesk.com/en/)
 
-### What is UVDesk?
+### What is UVdesk?
 
-[**UVDesk**](https://www.uvdesk.com/en/) is a open source helpdesk software solution. It has support for a multitude of features including the following: 
+[**UVdesk**](https://www.uvdesk.com/en/) is a open source helpdesk software solution. It has support for a multitude of features including the following: 
 
 * A multi-customer & multi-agent ticket system.
 * A full mailer system to send mail to agents and customers.
@@ -59,11 +59,10 @@ And that's it, your node is configured and you can now send builds from your pip
 * Custom branding
 
 
-
 #### Requirements
 
 * You will need to have a **local** mySQL or MariaDB instance running on the same docker network as uvdesk. 
-    * You will need to create a `uvdesk` database and `uvdesk` user with full privileges on that database *prior* to downloading uvdesk from Community Applications. Please refer to [Setting up the Database](#setting-up-the-database) for instructions.
+* You will need to create a `uvdesk` database and `uvdesk` user with full privileges on that database *prior* to downloading uvdesk from Community Applications. Please refer to [Setting up the Database](#setting-up-the-database) for instructions.
 * You will need a reverse proxy setup. 
 
 #### Reverse-Proxy
@@ -80,78 +79,29 @@ There are other guides, but these are all unRAID specific and should get you wha
 
 #### Setting up the Database
 
-If you don't know how to setup a database in mySQL, it sounds scarier than it is. First, download a mariaDB or mySQL image from Community Applications. After you've done that, click on the container image and hit console: 
-
-![console link on container click](images/accessing-console.png "Console link")
-
-You should be presented with a terminal pop-up browser window. If not, make sure to allow popups from your server's domain name. 
-
-##### Logging In
-
-You'll first need to login to mysql as root, using the password you made when you generated the mySQL template, as so: 
-
-```
-mysql -u root -p
-Enter password:
-```
-Once you paste/type in your password, you should see this: 
-
-```
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 9
-Server version: 8.0.32 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2023, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql>
-```
-
-##### Creating the User
-
-Now we can create the user (uvdesk by default):   
-
-`CREATE USER 'uvdesk'@'localhost' IDENTIFIED BY 'SUPERSECUREPASSWORDHERE';`
-
-You should see this output:  
-`Query OK, 0 rows affected (0.01 sec)`
-
-##### Creating the Database
-
-Now we create the database (uvdesk by default):
-`CREATE DATABASE 'uvdesk'`;
-
-Once again, you should see this output:
-`Query OK, 1 rows affected (0.01 sec)`
-
-##### Granting User Privileges on Database
-
-Lastly, we need to give our `uvdesk` user all privileges on the uvdesk database: 
-
-`GRANT ALL PRIVILEGES ON uvdesk.* TO 'uvdesk'@'localhost' IDENTIFIED BY 'SUPERSECUREPASSWORDHERE';`
-
-Once last time, you should see this output:  
-
-`Query OK, 1 rows affected (0.01 sec)`
-
-You've now done all the work you'll need to do in mySQL, you can exit the pop-up window or leave by typing `exit`. 
+If you don't know how to setup a database in mySQL, it sounds scarier than it is. First, download a mariaDB or mySQL image from Community Applications. In the template configuration, for the database user, database name, and database password, use whatever you want here and save it somewhere. Please note this is *different* from the **root** password, which some of these database containers will randomly generate on first startup. For those, you'll want to open the console after first creating it and save the root password from the logs in case you need it later or if you plan on running multiple databases in the container. 
 
 #### Installing uvdesk from Community Applications
 
-To install uvdesk from Community Applications, simply navigate to Community Apps and head to either **Productivity** or **Tools**, or just search `uvdesk`, you should see it in the results like this: 
+To install uvdesk from Community Applications, simply navigate to Community Apps and head to either **Productivity** or **Tools**, or just search `uvdesk`. 
 
-![community-apps](images/community-apps.png)
-
-#### Accessing UVDesk &  First-Time Setup
+#### First-Time Setup & Accessing UVdesk
 
 ##### Configuring the Container
-When you get to the container configuration page in unRAID, make sure to fill in all of your details regarding your mySQL instance, as well as your intended domain name for your instance (eg. help.mydomain.com). You will also need to generate an app secret, any 32 character randomized string will do. Lastly, make sure to set the timezone and currency to your local ones. 
+When you get to the container configuration page in unRAID, make sure to fill in the following fields: 
+
+* Timezone: Helpful for the timing on everything to be localized to you, especially with tickets. should be set to something like `America/New York`, based on your timezone. 
+* External DB Host: If you're running your DB on Unraid, this will be the IP of your Unraid server. If not, supply the appropriate address. 
+* External DB Port: This should be `3306` but if you're running off of a non-standard port, update accordingly. 
+* App Environment: This should stay `prod`, the `dev` instance is ephemeral and won't save data at all. 
+* Site URL: This should be the full FQDN (Fully Qualified Domain Name) of your site, the one you have setup in your reverse proxy or tunnel, e.g. `helpdesk.acme.com`. You **should not** put `https://` in front. 
+
+##### Web Installer Wizard
+Once you've filled in the fields, you can hit apply. Afterwards, hitting the WebUI button should take you to the installer wizard, alternatively you can navigate to `http:UNRAID-IP:6744`. 
+
+**It is recommended that if you use password-management browser extensions that you run this in an incognito/private window. There's a breaking interaction with password managers and the wizard.**
+
+You can run through the wizard, filling out the appropriate fields. The server version on the first page should be set to whatever version of mySQL you're running. The oldest supported version is `5.7.44` but ideally you should run something newer. 
 
 ##### Accessing the webUI
-After that, just hit apply and when you navigate to your domain name or http://SERVERIP:6744 you'll be presented with the Setup Wizard. You'll need to type the same mySQL info, and then create an admin user. After that, start exploring! 
-
+After the install, you should be able to navigate to your site's admin panel at https://mysite.com/en/member/login. Login with the account you made during setup and you will arrive at the dashboard!
