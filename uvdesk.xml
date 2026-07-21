@@ -1,42 +1,30 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>uvdesk</Name>
-  <Repository>dietermartens/uvdesk:latest</Repository>
-  <Registry>https://hub.docker.com/r/dietermartens/uvdesk/</Registry>
-  <Network>reverseproxy</Network>
-  <MyIP/>
-  <Shell>sh</Shell>
+  <Repository>untraceablez/uvdesk:latest</Repository>
+  <Registry>https://hub.docker.com/r/untraceablez/uvdesk/</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
   <Privileged>false</Privileged>
   <Support>https://github.com/untraceablez/uvdesk-unraid/issues</Support>
   <Project>https://github.com/uvdesk/community-skeleton/</Project>
-  <Overview>UVDesk - An Open Source Helpdesk.&#xD;
-&#xD;
-UVDesk is an open source helpdesk solution that can be self-hosted, allowing you to manage family and friends' IT problems with a helpdesk like you would in an IT career. If you are wanting to use UVDesk for business use, you should support the developers by contacting them on their website and looking at pricing options.&#xD;
-&#xD;
-Website: https://www.uvdesk.com/en/&#xD;
-Original Project GitHub: https://github.com/uvdesk/community-skeleton/&#xD;
-Template GitHub: https://github.com/untraceablez/uvdesk-unraid/</Overview>
-  <Category>Productivity: Tools: Status:Beta</Category>
+  <ReadMe>https://raw.githubusercontent.com/untraceablez/unraid-apps/main/uvdesk-read-first.md</ReadMe>
+  <Overview>UVDesk - An Open Source Helpdesk. UVDesk is an open source helpdesk solution that can be self-hosted, allowing you to manage family and friends' IT problems with a helpdesk like you would in an IT career. If you are wanting to use UVDesk for business use, you should support the developers by contacting them on their website and looking at pricing options. IMPORTANT: Read the setup guide before first run: https://raw.githubusercontent.com/untraceablez/unraid-apps/main/uvdesk-read-first.md Website: https://www.uvdesk.com/en/ Original Project GitHub: https://github.com/uvdesk/community-skeleton/ Template GitHub: https://github.com/untraceablez/uvdesk-Unraid/ Docker Image:https://hub.docker.com/r/untraceablez/uvdesk/</Overview>
+  <Category>Productivity: Tools:Utilities</Category>
   <WebUI>http://[IP]:[PORT:80]</WebUI>
-  <TemplateURL/>
+  <TemplateURL>https://raw.githubusercontent.com/untraceablez/unraid-apps/main/uvdesk.xml</TemplateURL>
   <Icon>https://yt3.googleusercontent.com/ytc/AL5GRJUffl2H80R11YincESU0WpqXTBIHekmY_B6cRN6Ng=s900-c-k-c0x00ffffff-no-rj</Icon>
   <ExtraParams/>
-  <PostArgs/>
+  <PostArgs>tail -f /dev/null</PostArgs>
   <CPUset/>
-  <DateInstalled>1681318382</DateInstalled>
-  <DonateText/>
-  <DonateLink/>
+  <DateInstalled>1784667016</DateInstalled>
+  <DonateText>If you like my work, feel free to donate.</DonateText>
+  <DonateLink>https://venmo.com/Taylor-Cohron</DonateLink>
   <Requires/>
-  <Config Name="webUI Port" Target="80" Default="6744" Mode="tcp" Description="" Type="Port" Display="always" Required="false" Mask="false">6744</Config>
-  <Config Name="Config directory" Target="/app" Default="/mnt/user/appdata/uvdesk" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/uvdesk</Config>
-  <Config Name="mySQL Host" Target="MYSQL_HOST" Default="[IP]" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="false"/>
-  <Config Name="mySQL Host Port" Target="MYSQL_PORT" Default="3306" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="false"/>
-  <Config Name="mySQL User" Target="MYSQL_USER" Default="uvdesk" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="false">uvdesk</Config>
-  <Config Name="mySQL Password" Target="MYSQL_PASSWORD" Default="whateveryoumadethepassworddude" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="true"/>
-  <Config Name="mySQL Root Password" Target="MYSQL_ROOT_PASSWORD" Default="yourmysqlrootpassword" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="true"/>
-  <Config Name="Server FQDN" Target="ServerName" Default="https://youripordomainname.here" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="APP_ENV" Target="APP_ENV" Default="dev" Mode="" Description="Puts app in development or production mode.&#13;&#10;dev = development mode&#13;&#10;prod = production mode" Type="Variable" Display="always" Required="true" Mask="false">dev</Config>
-  <Config Name="APP_SECRET" Target="APP_SECRET" Default="36d362127cb3e4d4982ce4cf6b716ddc53c5299c" Mode="" Description="The App Secret, set this to any random string, personally I like to hash a phrase into SHA1 and use that." Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Time Zone" Target="TZ" Default="America/New_York" Mode="" Description="Your timezone." Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="App Currency" Target="APP_CURRENCY" Default="USD" Mode="" Description="Currency value to use if you plan on CMS support." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="WebUI Port" Target="80" Default="6744" Mode="tcp" Description="Host port mapped to the container's Apache (port 80). Browse here to reach UVdesk and run the web installer." Type="Port" Display="always" Required="true" Mask="false">6744</Config>
+  <Config Name="Time Zone" Target="TZ" Default="America/New_York" Mode="" Description="Container timezone, e.g. America/Chicago." Type="Variable" Display="always" Required="false" Mask="false">America/Chicago</Config>
+  <Config Name="External DB Host" Target="MYSQL_HOST" Default="" Mode="" Description="Address of your external MySQL/MariaDB (unRAID host IP, or a DB container's name if on the same custom Docker network). REFERENCE ONLY - type this into the installer's Database step; the container does not consume it." Type="Variable" Display="always" Required="false" Mask="false">10.0.0.27</Config>
+  <Config Name="External DB Port" Target="MYSQL_PORT" Default="3306" Mode="" Description="Port of your external MySQL/MariaDB. Reference only - entered in the web installer, not consumed by the container." Type="Variable" Display="always" Required="false" Mask="false">3306</Config>
+  <Config Name="App Environment" Target="APP_ENV" Default="dev" Mode="" Description="Leave it as dev for the install process, after install completes, swap to prod. " Type="Variable" Display="always" Required="false" Mask="false">prod</Config>
+  <Config Name="Site URL" Target="SITE_URL" Default="helpdesk.acme.com" Mode="" Description="The FQDN for your site, e.g. helpdesk.mysite.com. You'll need to forward your IP:PORT combination through your reverse proxy or tunnel for it to work. " Type="Variable" Display="always" Required="false" Mask="false">support.taylorcohron.me</Config>
 </Container>
